@@ -1,10 +1,20 @@
-from flask import Flask 
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hola mundo! ruta raiz'
+    grupo = "IDGS803"
+    lista = ['Sergio','Esteban','Erick','Juan']
+    return render_template('index.html',grupo = grupo, lista = lista)
+
+@app.route("/ejemplo1")
+def ejemplo1():
+    return render_template('ejemplo1.html')
+
+@app.route("/ejemplo2")
+def ejemplo2():
+    return render_template('ejemplo2.html') 
 
 @app.route('/hola')
 def hola():
@@ -26,10 +36,40 @@ def user_id(user, id):
 def suma(num1, num2):
     return 'La suma es {}'.format(num1 + num2)
 
-@app.route('/default')
-@app.route('/default/<string:nom>')
-def func(nom='Sergio'):
-    return 'Hola {}'.format(nom)
+@app.route('/OperasBas')
+def OperasBas():
+    return render_template('OperasBas.html')
+
+@app.route('/resultado', methods=['POST'])
+def resultado():
+    num1 = float(request.form['num1'])
+    num2 = float(request.form['num2'])
+    operacion = request.form['operacion']
+    
+    resultado = 0
+    if operacion == 'suma':
+        resultado = num1 + num2
+    elif operacion == 'resta':
+        resultado = num1 - num2
+    elif operacion == 'multiplicacion':
+        resultado = num1 * num2
+    elif operacion == 'division':
+        resultado = num1 / num2
+    
+    return render_template('OperasBas.html', resultado=resultado)
+
+@app.route("/form1")
+def form1():
+    return '''
+    <form>
+        <label>Nombre:</label>
+        <input type="text" name="nombre" placeholder="Nombre">
+        <br>
+        <label>Apellido:</label>
+        <input type="text" name="apellido" placeholder="Apellido">
+        <br>
+    </form>
+    '''
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

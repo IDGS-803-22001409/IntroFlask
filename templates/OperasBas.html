@@ -1,0 +1,74 @@
+{% extends "layout.html" %} {% block container %}
+<div class="row">
+  <div class="col-md-6">
+    <h1>Calcular</h1>
+    <form action="/resultado" method="post">
+      <div class="mb-3">
+        <label type="number" name="num1">Numero 1:</label>
+        <input type="number" name="num1" id="num1" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label type="number" name="num2">Numero 2:</label>
+        <input type="number" name="num2" id="num2" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Operación:</label><br />
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="operacion"
+            id="suma"
+            value="suma"
+            checked
+          />
+          <label class="form-check-label" for="suma">Sumar</label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="operacion"
+            id="resta"
+            value="resta"
+          />
+          <label class="form-check-label" for="resta">Restar</label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="operacion"
+            id="multiplicacion"
+            value="multiplicacion"
+          />
+          <label class="form-check-label" for="multiplicacion"
+            >Multiplicar</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="operacion"
+            id="division"
+            value="division"
+          />
+          <label class="form-check-label" for="division">Dividir</label>
+        </div>
+      </div>
+
+      <input type="submit" value="Calcular" class="btn btn-primary" />
+    </form>
+  </div>
+
+  <div class="col-md-6">
+    <h1>Resultado</h1>
+    {% if resultado %}
+    <p>El resultado es {{resultado}}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
