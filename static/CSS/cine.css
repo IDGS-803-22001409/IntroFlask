@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mako&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Signika+Negative:wght@300..700&display=swap");
+body {
+  background-image: url("../IMG/logoCine.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+.seccion {
+  border: 2px solid white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: white;
+}
+
+.seccion h1,
+.seccion h2,
+.seccion h3,
+.seccion h4,
+.seccion h5,
+.seccion h6,
+.seccion p {
+  color: #000000;
+}

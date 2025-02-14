@@ -58,6 +58,48 @@ def resultado():
     
     return render_template('OperasBas.html', resultado=resultado)
 
+def calcular_descuento(cantidad_boletas):
+    if cantidad_boletas > 5:
+        return 0.15  
+    elif 3 <= cantidad_boletas <= 5:
+        return 0.10  
+    else:
+        return 0 
+
+@app.route('/cine', methods=['GET', 'POST'])
+def cine():
+    valor_a_pagar = None
+    nombre = None
+    cantidad_boletas = None
+    error = None
+
+    if request.method == 'POST':
+        nombre = request.form.get('nombre')
+        cantidad_compradores = int(request.form.get('cantidadCompradores', 0))
+        tarjeta_cineco = request.form.get('tarjetaCineco') == 'tarjetaCineco'
+        cantidad_boletas = int(request.form.get('cantidadBoletas', 0))
+        
+        max_boletos_permitidos = cantidad_compradores * 7
+        if cantidad_boletas > max_boletos_permitidos:
+            error = f'Máximo {max_boletos_permitidos} boletas permitidas para {cantidad_compradores} compradores'
+        else:
+            precio_base = 12.00* cantidad_boletas
+            descuento_cantidad = calcular_descuento(cantidad_boletas)
+            precio_con_descuento = precio_base * (1 - descuento_cantidad)
+            
+            if tarjeta_cineco:
+                precio_final = precio_con_descuento * 0.90
+            else:
+                precio_final = precio_con_descuento
+                
+            valor_a_pagar = round(precio_final)
+    
+    return render_template('cine.html', 
+                         valor_a_pagar=valor_a_pagar,
+                         nombre=nombre,
+                         cantidad_boletas=cantidad_boletas,
+                         error=error)
+
 @app.route("/form1")
 def form1():
     return '''
