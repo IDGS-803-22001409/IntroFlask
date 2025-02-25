@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {% block container %} {% import "_macros.html" as
+macros %}
+<form action="" method="post" novalidate>
+  {{form.csrf_token}}
+  <input type="hidden" name="csrf_token" value="{{csrf_token() }}" />
+  <div class="row control-group">
+    <div class="form-groupform col-xs-12" floting-label-form-group controls>
+      {{macros.campoNuevo(form.matricula, class = "form-control")}}
+    </div>
+    <div class="form-groupform col-xs-12" floting-label-form-group controls>
+      {{macros.campoNuevo(form.nombre, class = "form-control")}}
+    </div>
+    <div class="form-groupform col-xs-12" floting-label-form-group controls>
+      {{macros.campoNuevo(form.edad, class = "form-control")}}
+    </div>
+    <div class="form-groupform col-xs-12" floting-label-form-group controls>
+      {{macros.campoNuevo(form.email, class = "form-control")}}
+    </div>
+    <div class="form-groupform col-xs-12" floting-label-form-group controls>
+      {{macros.campoNuevo(form.apellidos, class = "form-control")}}
+    </div>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Guardar" />
+</form>
+
+<h2>Matricula {{matricula}}</h2>
+<h2>Nombre {{nombre}}</h2>
+<h2>Edad {{edad}}</h2>
+<h2>Email {{email}}</h2>
+<h2>Apellidos {{apellidos}}</h2>
+
+{% endblock %}
